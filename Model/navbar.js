@@ -1,19 +1,22 @@
-// const profileIcon = document.getElementById('profileIcon');
-//     const loginForm = document.getElementById('loginForm');
-//     const overlay = document.getElementById('overlay');
+// Modal Open/Close Logic
+const loginBtn = document.getElementById('profileBtn');
+const loginModal = document.getElementById('loginModal');
+const closeModal = document.getElementById('closeModal');
 
-//     // Show login form
-//     profileIcon.addEventListener('click', () => {
-//       loginForm.classList.add('active');
-//       overlay.classList.add('active');
-//     });
+// Open the modal
+loginBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    loginModal.style.display = 'flex';
+});
 
-//     // Hide login form when clicking outside
-//     overlay.addEventListener('click', () => {
-//       loginForm.classList.remove('active');
-//       overlay.classList.remove('active');
-//     });
+// Close the modal
+closeModal.addEventListener('click', () => {
+    loginModal.style.display = 'none';
+});
 
-  function redirectToLogin() {
-    window.location.href = 'Login.html';
-  }
+// Close modal when clicking outside of it
+window.addEventListener('click', (e) => {
+    if (e.target === loginModal) {
+        loginModal.style.display = 'none';
+    }
+});

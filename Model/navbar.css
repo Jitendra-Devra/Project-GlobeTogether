@@ -9,6 +9,7 @@ body {
     background-image: url("/Pics/pexels-bertellifotografia-15141455.jpg");
     background-size: cover;
     background-position: center;
+    /* opacity:80%; */
 }
 
 /* Navbar styling */
@@ -22,7 +23,7 @@ body {
     color: white;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 3;
 }
 
 .navbar .logo {
@@ -66,27 +67,40 @@ body {
     gap: 15px;
 }
 
-.profile-icon {
+#container {
     width: 54px;
     height: 50px;
     cursor: pointer;
     border-radius: 50%;
-    /* background-color: #ddd; */
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    /* margin: 20px; */
-  }
-
+}
 .navbar .menu a {
     text-decoration: none;
     color: white;
     font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 8px 12px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
+
+
+#container .fa-user,
+#container .fa-bell,
+#container .fa-user-group,
+#container .fa-rocketchat {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the icon properly */
+}
+
 
 /* .svg #profile {
     height: 30px;
@@ -136,4 +150,35 @@ body {
 .header-content .search-bar {
     max-width: 600px;
     margin: 0 auto;
+}
+
+/* form styling*/
+/* Modal Styles */
+.modal {
+    z-index: 4;
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    /* top: 10px;
+    right: 10px; */ 
+    font-size: 20px;
+    cursor: pointer;
 }
