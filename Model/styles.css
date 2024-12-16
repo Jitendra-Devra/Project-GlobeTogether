@@ -5,10 +5,11 @@ body {
     background-color: #f4f4f9;
 }
 
-.main-header{
+.main-header .combo{
     background-image: url("/Pics/pexels-bertellifotografia-15141455.jpg");
     background-size: cover;
     background-position: center;
+    z-index: 0;
     /* opacity:80%; */
 }
 
@@ -86,6 +87,71 @@ body {
     text-align: center;
 }
 
+/* Notification Icon Container */
+#notificationContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+/* Popup Message Box */
+.popup-box {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Hidden offscreen by default */
+    width: 270px;
+    height: 60%;
+    border-top-left-radius: 10%;
+    border-bottom-left-radius: 10%;
+
+    background-color: white;
+    opacity: 0.8;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    border-left: 1px solid #ccc;
+    overflow-y: auto;
+    transition: right 0.3s ease;
+    z-index: 5;
+}
+/* Popup Header */
+.popup-header {
+    background-color: #007bff;
+    color: white;
+    opacity: 1;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+.popup-header h3 {
+    margin: 0;
+}
+.close-btn {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* Popup Content */
+.popup-content {
+    padding: 15px;
+    font-size: 14px;
+    color: #333;
+}
+/* Show Popup (Sliding In) */
+.popup-box.open {
+    right: 0; /* Slide in */
+}
+
+
 /* Style the tooltip text */
 .tooltip {
     position: absolute;
@@ -104,6 +170,9 @@ body {
     pointer-events: none; /* Ignore pointer events */
     z-index: 2; /* Keep tooltip above other elements */
 }
+
+
+
 
 /* Show the tooltip on hover */
 #container:hover .tooltip {
@@ -160,9 +229,9 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 52%;
     background-color: rgba(0, 0, 0, 0.4);
-    z-index: 1;
+    z-index: 1; 
 }
 
 .header-content {
@@ -249,6 +318,7 @@ body {
     flex: 1; /* Takes equal space relative to the image */
     width: 50%; /* Ensure form width is 50% of the modal content */
 }
+
 /* Close button */
 .close {
     position: absolute;

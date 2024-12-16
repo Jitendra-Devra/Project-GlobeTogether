@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobeTogether</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="main-header">
+        <div class="combo">
+            <!-- Navbar -->
+            <nav class="navbar">
+                <div class="logo">GlobeTogether</div>
+                <div class="menu">
+                    <div id="container">
+                        <a href="#" aria-label="Profie" id="profileBtn">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="tooltip">Profile</span>
+                        </a>
+                    </div>
+                    <div id="container notificationContainer">
+                        <a href="#" aria-label="Notifications" id="notificationBtn">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="tooltip">Notifications</span>
+                        </a>
+                    </div>
+                    <!-- Popup Message Box -->
+                    <div id="popupBox" class="popup-box">
+                        <div class="popup-header">
+                            <h3>Notifications</h3>
+                            <span id="closePopup" class="close-btn">&times;</span>
+                        </div>
+                        <div class="popup-content">
+                            <p>You have no new notifications.</p>
+                        </div>
+                    </div>
+                    <div id="container">
+                        <a href="#" aria-label="Groups">
+                            <i class="fa-solid fa-user-group"></i>
+                            <span class="tooltip">Community</span>
+                        </a>
+                    </div>
+                    <div id="container">
+                        <a href="#" aria-label="Messages">
+                            <i class="fa-brands fa-rocketchat"></i>
+                            <span class="tooltip">Chats</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Header Section -->
+            <header class="header">
+
+                <div class="header-content">
+                    <h1>Discover Your Next Adventure</h1>
+                    <p>Connect with like-minded travelers and embark on unforgettable journeys together.</p>
+                    <div class="search-bar">
+                        <input type="text" placeholder="Explore destinations, trips, and more...">
+                        <span class="icon">&#128269;</span>
+                    </div>
+            </header>
+        </div>
+
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <h2>Login to GlobeTogether</h2>
+                <span class="close" id="closeModal">&#10006;</span>
+                <div class="modal-layout">
+                    <!-- Left Section: Logo/Image -->
+                    <div class="modal-image">
+                        <img src="favicon.ico" alt="Logo" />
+                    </div>
+                    <div class="modal-form">
+
+                        <form id="loginForm">
+                            <label for="username">Email or Phone Number</label>
+                            <input type="text" id="username" name="username" placeholder="Enter your email" required>
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Enter your password"
+                                required>
+                            <a href="#" id="forgotPasswordLink"
+                                style="text-align: right; font-size: 12px; color: #007bff; text-decoration: none;">
+                                Forgot your password?
+                            </a>
+                            <button type="submit">Login</button>
+                        </form>
+                        <p style="margin-top: 10px; font-size: 14px;">
+                            Don't have an account? <a href="#"
+                                style="color: #007bff; font-weight: bold; text-decoration: none;" id="openSignup">Sign
+                                Up</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Forgot Password Modal -->
+        <div id="forgotPasswordModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" id="closeForgotPasswordModal">&#10006;</span>
+                <h2>Reset Your Password</h2>
+                <form id="forgotPasswordForm">
+                    <label for="email">Enter your email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <!-- Signup Modal -->
+        <div id="signupModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeSignupModal">&#10006;</span>
+                <h2>Login to GlobeTogether</h2>
+                <div class="modal-layout">
+                    <!-- Left Section: Logo/Image -->
+                    <div class="modal-image">
+                        <img src="favicon.ico" alt="Logo" />
+                    </div>
+                    <!-- Right Section: Signup Form -->
+                    <div class="modal-form">
+                        <form id="signupForm">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+                            <label for="password">Password</label>
+                            <input type="password" id="signupPassword" name="password" placeholder="Enter your password"
+                                required>
+                            <p style="font-size: 12px; color: #555;">
+                                Please enter a stronger password. Password can contain:
+                                <br> Lowercase & Uppercase, Number (0-9), Special Character (@#$%^&*!), and At least 8
+                                characters.
+                            </p>
+
+                            <button type="submit">Sign Up</button>
+                        </form>
+                        <p style="margin-top: 10px; font-size: 14px;">
+                            Already have an account?
+                            <a href="#" id="switchToLogin"
+                                style="color: #007bff; font-weight: bold; text-decoration: none;">Login</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-container">
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo numquam suscipit molestiae commodi, accusantium veniam consequuntur voluptatem repellat ea fuga soluta quibusdam laudantium aliquid aspernatur exercitationem repellendus fugit, atque quia reprehenderit excepturi dolorum iure. Ullam quibusdam laudantium autem non obcaecati minus ab aperiam commodi modi doloremque et explicabo, perspiciatis architecto, fugiat eum minima sint necessitatibus vitae magnam distinctio repellat enim placeat molestias maiores. Vero commodi blanditiis, incidunt aliquid culpa praesentium voluptas nemo amet distinctio debitis aspernatur iste fugit repellendus dolor voluptatibus beatae porro molestias adipisci? Tenetur, harum at numquam doloribus, voluptatum eaque veniam adipisci quas qui provident ad inventore vel dolorum, molestiae incidunt fugit nostrum et ullam iure cum. Sapiente maxime debitis magni sunt aliquam iusto, architecto quisquam incidunt voluptates modi explicabo earum ullam dolorum, ex laudantium illo assumenda! Ipsa quas laudantium debitis error, quam cum itaque sunt ab ex illo at nobis consequatur quae assumenda officiis, dicta animi vel. Nisi similique adipisci, voluptatem obcaecati ipsa dolore tenetur blanditiis quam non nesciunt porro, perspiciatis, distinctio officiis reprehenderit sed. Deserunt aliquid quaerat quis natus aspernatur! Fuga corporis culpa provident harum quod qui reiciendis ipsa nesciunt neque voluptatibus quasi similique sit placeat sequi mollitia, excepturi eligendi eum animi quos. Explicabo aliquam adipisci porro maiores nostrum fugiat, dignissimos aut mollitia perspiciatis temporibus in molestias. Cum adipisci quae perferendis veritatis reiciendis expedita neque aliquam minus repellat, et voluptatibus saepe incidunt eos maiores impedit similique, recusandae ex praesentium molestias vel nemo accusantium ratione. Nisi, labore neque. Perferendis culpa, pariatur saepe illum eum voluptate repellat quisquam necessitatibus rerum enim, reprehenderit ducimus sed harum eligendi ipsa fugiat quia. Nemo mollitia aspernatur expedita tenetur corrupti, eligendi et dolorum quo ducimus dolore quis dolor iste repudiandae tempore quaerat ab, officiis quidem modi doloremque soluta, recusandae neque facere? Iusto illum mollitia, maxime, reiciendis sunt dolorum velit, maiores fuga incidunt nulla aperiam commodi. Velit atque recusandae adipisci unde labore eveniet fuga dolore inventore accusamus! Perferendis dolore atque tempora, voluptatibus aliquid eius doloribus illum consectetur placeat iusto velit a at vitae fuga minus, tenetur praesentium enim, perspiciatis quisquam asperiores cum eum facilis magnam alias? Voluptatum reprehenderit magni vel et quae aliquam consequuntur enim dignissimos porro expedita illum dolorum eius architecto amet earum unde doloremque, culpa dolor officia cupiditate. Error, tempora aspernatur. Dolorum est numquam deserunt, magnam ullam earum, quam placeat expedita fuga deleniti illo neque, architecto dolore. Consequatur blanditiis cupiditate, quod, quam ducimus laborum maiores quisquam iste dicta asperiores minima iusto voluptate! Porro beatae repudiandae vitae minima deleniti, commodi sint expedita nihil, consequuntur quibusdam quod unde perferendis veritatis velit? Cupiditate dolorum at esse adipisci cumque iste dolorem cum tempora officiis. Molestiae, dolorem ducimus! Accusamus, ab quod. Vel voluptatem eum qui doloremque maxime tempora atque vitae minus. Delectus nobis laborum error deleniti quas laudantium hic qui quidem quod. Eligendi rem ut quidem praesentium ullam doloremque consectetur molestias beatae minus cupiditate ratione ducimus possimus neque odio itaque debitis molestiae expedita impedit, inventore, dolor eum repellendus soluta aliquid quae! Nam omnis fuga beatae, error officia esse repellendus nobis unde ea expedita culpa, nesciunt quibusdam excepturi repudiandae? Fugit, quaerat dolorem. Iste rerum at suscipit accusantium recusandae maiores distinctio in corporis totam tempora voluptatibus nemo animi atque velit architecto repellat hic dolorum voluptates nobis, repudiandae voluptatum. In molestiae a obcaecati quis, distinctio asperiores atque laborum rem ab. Necessitatibus similique ea voluptates odio amet aut, exercitationem soluta earum, officia voluptatibus iste numquam temporibus ipsum labore eveniet fugit? Veritatis laudantium impedit dignissimos ratione soluta! Commodi laboriosam maiores modi suscipit natus, placeat vel distinctio eos amet tenetur, rem saepe totam id aliquam praesentium blanditiis. Ea, explicabo ex suscipit facilis placeat in maiores, repellendus excepturi optio libero, beatae praesentium dignissimos cum.</p>
+    </div>
+    <script src="index.js"></script>
+    <!-- <script src="forgotPassword.js"></script> -->
+
+</body>
+
+</html>

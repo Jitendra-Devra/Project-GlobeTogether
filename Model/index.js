@@ -1,3 +1,19 @@
+// Get elements
+const notificationBtn = document.getElementById('notificationBtn');
+const popupBox = document.getElementById('popupBox');
+const closePopup = document.getElementById('closePopup');
+
+// Open/Close the popup on click
+notificationBtn.addEventListener('click', () => {
+    popupBox.classList.toggle('open'); // Add/Remove the 'open' class
+});
+
+// Close the popup when close button is clicked
+closePopup.addEventListener('click', () => {
+    popupBox.classList.remove('open');
+});
+
+
 // Modal Open/Close Logic
 
 // Login Modal
