@@ -75,7 +75,7 @@
                             <label for="password">Password</label>
                             <input type="password" id="password" name="password" placeholder="Enter your password"
                                 required>
-                            <a href="#"
+                            <a href="#" id="forgotPasswordLink"
                                 style="text-align: right; font-size: 12px; color: #007bff; text-decoration: none;">
                                 Forgot your password?
                             </a>
@@ -88,19 +88,30 @@
                         </p>
                         <p style="color: #555; font-size: 12px; margin-top: 20px;">Or continue with</p>
                         <div style="display: flex; flex-direction: column; gap: 10px;">
-                            <button style="background-color: #4267B2; color: white;">Sign in with Facebook</button>
-                            <button style="background-color: #DB4437; color: white;">Sign in with Google</button>
+                            <button style="background-color: #4267B2; color: white;display: flex; align-items: center; justify-content: center;" >
+                                <img src="/Pics/Logo-facebook-icon-PNG.png" alt="Facebook" style="width: 25px; height: 25px;">Sign in with Facebook</button>
+                            <button style="background-color: #f05648; color: white;">
+                                <img src="/Pics/Logo-google-icon-PNG-removebg-preview (1).png" alt="Google" style="width: 20px; height: 20px;">Sign in with Google</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--        -->
-
-
+        </div>
+        <!-- Forgot Password Modal -->
+        <div id="forgotPasswordModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" id="closeForgotPasswordModal">&#10006;</span>
+                <h2>Reset Your Password</h2>
+                <form id="forgotPasswordForm">
+                    <label for="email">Enter your email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
         </div>
         <!-- Signup Modal -->
         <div id="signupModal" class="modal">
-            <div class="modal-content" >
+            <div class="modal-content">
                 <span class="close" id="closeSignupModal">&#10006;</span>
                 <h2>Login to GlobeTogether</h2>
                 <div class="modal-layout">
@@ -140,6 +151,8 @@
                 </div>
             </div>
             <script src="navbar.js"></script>
+            <!-- <script src="forgotPassword.js"></script> -->
+
 </body>
 
 </html>

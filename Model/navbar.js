@@ -55,3 +55,26 @@ window.addEventListener('click', (e) => {
     }
 });
 
+
+// Select elements
+const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+const forgotPasswordModal = document.getElementById('forgotPasswordModal');
+const closeForgotPasswordModal = document.getElementById('closeForgotPasswordModal');
+
+// Open Forgot Password modal
+forgotPasswordLink.addEventListener('click', (e) => {
+    e.preventDefault(); // Prevent link from navigating
+    forgotPasswordModal.style.display = 'flex'; // Show the modal
+});
+
+// Close Forgot Password modal
+closeForgotPasswordModal.addEventListener('click', () => {
+    forgotPasswordModal.style.display = 'none'; // Hide the modal
+});
+
+// Close Forgot Password modal when clicking outside the modal
+window.addEventListener('click', (e) => {
+    if (e.target === forgotPasswordModal) {
+        forgotPasswordModal.style.display = 'none'; // Hide modal if clicking outside
+    }
+});
