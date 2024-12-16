@@ -37,10 +37,10 @@
                     </a>
                 </div>
                 <div id="container">
-                <a href="#" aria-label="Messages">
-                    <i class="fa-brands fa-rocketchat"></i>
-                    <span class="tooltip">Chats</span>
-                </a>
+                    <a href="#" aria-label="Messages">
+                        <i class="fa-brands fa-rocketchat"></i>
+                        <span class="tooltip">Chats</span>
+                    </a>
                 </div>
             </div>
         </nav>
@@ -57,36 +57,89 @@
                 </div>
         </header>
 
-       <!-- Login Modal -->
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close" id="closeModal">&#10006;</span>
-        <h2>Login to GlobeTogether</h2>
-        <form id="loginForm">
-            <label for="username">Email or Phone Number</label>
-            <input type="text" id="username" name="username" placeholder="Enter your email" required>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-            <a href="#" style="text-align: right; font-size: 12px; color: #007bff; text-decoration: none;">
-                Forgot your password?
-            </a>
-            <button type="submit">Login</button>
-        </form>
-        <p style="margin-top: 10px; font-size: 14px;">
-            Don't have an account? <a href="#" style="color: #007bff; font-weight: bold; text-decoration: none;">Sign Up</a>
-        </p>
-        <p style="color: #555; font-size: 12px; margin-top: 20px;">Or continue with</p>
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-            <button style="background-color: #4267B2; color: white;">Sign in with Facebook</button>
-            <button style="background-color: #DB4437; color: white;">Sign in with Google</button>
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <h2>Login to GlobeTogether</h2>
+                <span class="close" id="closeModal">&#10006;</span>
+                <div class="modal-layout">
+                    <!-- Left Section: Logo/Image -->
+                    <div class="modal-image">
+                        <img src="favicon.ico" alt="Logo" />
+                    </div>
+                    <div class="modal-form">
+
+                        <form id="loginForm">
+                            <label for="username">Email or Phone Number</label>
+                            <input type="text" id="username" name="username" placeholder="Enter your email" required>
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Enter your password"
+                                required>
+                            <a href="#"
+                                style="text-align: right; font-size: 12px; color: #007bff; text-decoration: none;">
+                                Forgot your password?
+                            </a>
+                            <button type="submit">Login</button>
+                        </form>
+                        <p style="margin-top: 10px; font-size: 14px;">
+                            Don't have an account? <a href="#"
+                                style="color: #007bff; font-weight: bold; text-decoration: none;" id="openSignup">Sign
+                                Up</a>
+                        </p>
+                        <p style="color: #555; font-size: 12px; margin-top: 20px;">Or continue with</p>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <button style="background-color: #4267B2; color: white;">Sign in with Facebook</button>
+                            <button style="background-color: #DB4437; color: white;">Sign in with Google</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--        -->
+
+
         </div>
-    </div>
-</div>
+        <!-- Signup Modal -->
+        <div id="signupModal" class="modal">
+            <div class="modal-content" >
+                <span class="close" id="closeSignupModal">&#10006;</span>
+                <h2>Login to GlobeTogether</h2>
+                <div class="modal-layout">
+                    <!-- Left Section: Logo/Image -->
+                    <div class="modal-image">
+                        <img src="favicon.ico" alt="Logo" />
+                    </div>
+                    <!-- Right Section: Signup Form -->
+                    <div class="modal-form">
+                        <form id="signupForm">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
-        <!--                  -->
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-    </div>
-    <script src="navbar.js"></script>
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+                            <label for="password">Password</label>
+                            <input type="password" id="signupPassword" name="password" placeholder="Enter your password"
+                                required>
+                            <p style="font-size: 12px; color: #555;">
+                                Please enter a stronger password. Password can contain:
+                                <br> Lowercase & Uppercase, Number (0-9), Special Character (@#$%^&*!), and At least 8
+                                characters.
+                            </p>
+
+                            <button type="submit">Sign Up</button>
+                        </form>
+                        <p style="margin-top: 10px; font-size: 14px;">
+                            Already have an account?
+                            <a href="#" id="switchToLogin"
+                                style="color: #007bff; font-weight: bold; text-decoration: none;">Login</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <script src="navbar.js"></script>
 </body>
 
 </html>
