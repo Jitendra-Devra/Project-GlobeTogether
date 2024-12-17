@@ -1,7 +1,7 @@
 // import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-// import { AuthProvider, useAuth } from "./context/AuthContext";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import "./App.css";
+import { useState } from "react";
 
 // Import components
 import Navbar from "./components/Navbar";
@@ -11,67 +11,67 @@ import Footer from "./components/Footer";
 import backgroundImage from "./public/assets/bgImg.jpg";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-// import Profile from "./components/Profile";
+import ForgetPassword from "./components/ForgetPassword";
+import Notification from "./components/Notification";
 
 
-
-// const PrivateRoute = ({ children }) => {
-//   const { isAuthenticated } = useAuth();
-//   return isAuthenticated ? children : <Navigate to="/login" replace />;
-// };
 
 const App = () => {
+
+  const [isLoginModalOpen, setLoginModalOpen] = useState(false);
+  const [isSignupModalOpen, setSignupModalOpen] = useState(false);
+  const [isForgotPasswordOpen, setForgotPasswordOpen] = useState(false);
+
+
   return (
     <Router>
     <div className="App">
       <div className="main-header relative w-full h-[360px] bg-cover bg-center z-0"
     style={{ backgroundImage: `url(${backgroundImage})` }}>
-        <Navbar />
+        <Navbar openLogin={()=>setLoginModalOpen(true)}/>
         <Header />
       </div>
 
       <Routes>
         <Route path="/" element={<TrendingPage />} />
-        {/* <Route path="/profile" element={<Profile />} /> */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
       </Routes>
       <Footer />
+
+       {/* Notification Popup */}
+       <Notification />
+
+       {/* Modal */}
+       <Login
+          isOpen={isLoginModalOpen}
+          onClose={() => setLoginModalOpen(false)}
+          onSignupOpen={() => {
+            setLoginModalOpen(false);
+            setSignupModalOpen(true);
+          }}
+          onForgotPasswordOpen={() => {
+            setLoginModalOpen(false);
+            setForgotPasswordOpen(true);
+          }}
+        />
+        {/* Signup Modal */}
+        <Signup
+          isOpen={isSignupModalOpen}
+          onClose={() => setSignupModalOpen(false)}
+          onLoginOpen={() => {
+            setSignupModalOpen(false);
+            setLoginModalOpen(true);
+          }}
+        />
+         <ForgetPassword
+          isOpen={isForgotPasswordOpen}
+          onClose={() => setForgotPasswordOpen(false)}
+          onLoginOpen={() => {
+            setForgotPasswordOpen(false);
+            setLoginModalOpen(true);
+          }}
+        />
     </div>
     </Router>
-    // <Router>
-    //   <AuthProvider>
-    //     <div className="App">
-    //       {/* Header Section with Navbar */}
-    //       <div
-    //         className="main-header relative w-full h-[360px] bg-cover bg-center z-0"
-    //         style={{ backgroundImage: `url(${backgroundImage})` }}
-    //       >
-    //         <Navbar />
-    //         <Header />
-    //       </div>
-
-    //       {/* Routes */}
-    //       <Routes>
-    //         <Route path="/" element={<TrendingPage />} />
-    //         <Route
-    //           path="/profile"
-    //           element={
-    //             <PrivateRoute>
-    //               <Profile />
-    //             </PrivateRoute>
-    //           }
-    //         />
-    //         <Route path="/login" element={<Login />} />
-    //         <Route path="/signup" element={<Signup />} />
-    //         <Route path="*" element={<Navigate to="/" />} />
-    //       </Routes>
-
-    //       {/* Footer Section */}
-    //       <Footer />
-    //     </div>
-    //   </AuthProvider>
-    // </Router>
   );
 };
 

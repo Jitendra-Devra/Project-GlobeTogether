@@ -12,6 +12,7 @@ const TrendingPage = () => {
     { image: Manali, title: "Manali", description: "This is the description of card 2." },
     { image: Kashmir, title: "Kashmir", description: "This is the description of card 3." },
     { image: TajMahal, title: "Taj Mahal", description: "This is the description of card 4." },
+
   ];
   return (
     <>
