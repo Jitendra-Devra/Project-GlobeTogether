@@ -9,11 +9,12 @@ import Footer from "../components/Footer";
 import backgroundImage from "../public/assets/bgImg.jpg";
 import Signin from "./Signin";
 import Signup from "./Signup";
+import Profile from './Profile';
 import ForgetPassword from "./ForgetPassword";
 import Notification from "./Notification";
 import PostsSection from "../components/PostsSection";
 import MoreDestinations from "../components/MoreDestinations";
-
+import Chatbot from "../components/Chatbot";
 
 const Dashboard = () => {
 
@@ -52,8 +53,9 @@ const Dashboard = () => {
         } />
          <Route path="/destinations" element={<MoreDestinations />} />
         {/* <Route path="/posts" element={<PostsSection />} /> New Route for Posts */}
+        <Route path="/profile" element={<Profile />}/>
       </Routes>
-
+      
      
       <Footer />
 
@@ -91,6 +93,7 @@ const Dashboard = () => {
           }}
         />
     </div>
+    <Chatbot />
     </Router>
     )
 }

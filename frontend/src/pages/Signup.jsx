@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import logoImage from "../assets/favicon.ico"; // Adjust the path as necessary
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = ({ isOpen, onClose, onLoginOpen }) => {
   const [fullName, setFullName] = useState('');
@@ -8,21 +10,27 @@ const Signup = ({ isOpen, onClose, onLoginOpen }) => {
   const [password, setPassword] = useState('');
 
   const handleSignup = async () => {
-    e.preventDefault();
     try {
-        const response = await axios.post('/api/auth/register', { fullName, email, password });
+        const response = await axios.post('http://localhost:5001/api/auth/register', { fullName, email, password });
         // Handle successful signup (e.g., save token, redirect)
+        toast.success('Signup successful!');
         console.log(response.data);
     } catch (error) {
         // Handle error
+        if (error.response && error.response.status === 400) {
+            toast.error('User already exists!');
+        } else {
+            toast.error('Signup failed!');
+        }
         console.error(error);
     }
-};
+  };
     if(!isOpen) return null; // Return nothing if modal is closed
 
 
   return (
     <div className="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-4 ">
+      <ToastContainer />
       <div className= "modal-content flex flex-col items-center max-w-[600px] mx-auto gap-5 p-8 bg-gradient-to-b from-[#a0c4ff] to-[#e4f0ff] rounded-lg text-center relative font-sans animate-fadeIn">
         {/* Close Button */}
         <span

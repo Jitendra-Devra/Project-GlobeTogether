@@ -1,15 +1,39 @@
-// import React from "react";
+import React from "react";
+import { useEffect ,useState } from "react";
+import axios from "axios";
 
 const Profile = () => {
-  const user = {
-    name: "John Doe",
-    email: "johndoe@example.com",
-    bio: "Full Stack Developer | Tech Enthusiast | Lifelong Learner",
-    profileImage:
-      "https://via.placeholder.com/150", // Replace with your actual image URL
-    location: "San Francisco, CA",
-    joined: "January 2023",
-  };
+  const [user, setUser] = React.useState(null);
+  // const user = {
+  //   name: "John Doe",
+  //   email: "johndoe@example.com",
+  //   bio: "Full Stack Developer | Tech Enthusiast | Lifelong Learner",
+  //   profileImage:
+  //     "https://via.placeholder.com/150", // Replace with your actual image URL
+  //   location: "San Francisco, CA",
+  //   joined: "January 2023",
+  // };
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:5001/api/auth/profile', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUser(response.data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  },[]);
+
+  if(!user){
+    return <div>Loading...</div>
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
@@ -22,7 +46,7 @@ const Profile = () => {
             className="w-full h-48 object-cover rounded-t-lg"
           />
           <img
-            src={user.profileImage}
+            src={user.profileImage || "https://via.placeholder.com/150"} // Replace with your actual image URL
             alt="Profile"
             className="absolute bottom-[-50px] left-1/2 transform -translate-x-1/2 w-24 h-24 rounded-full border-4 border-white"
           />
@@ -30,7 +54,7 @@ const Profile = () => {
 
         {/* Profile Body */}
         <div className="text-center mt-16 p-4">
-          <h2 className="text-2xl font-bold text-gray-800">{user.name}</h2>
+          <h2 className="text-2xl font-bold text-gray-800">{user.fullName}</h2>
           <p className="text-gray-500 text-sm">{user.bio}</p>
           <p className="mt-2 text-gray-600">
             <i className="fas fa-envelope text-gray-400 mr-1"></i>

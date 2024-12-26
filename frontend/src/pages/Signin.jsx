@@ -1,26 +1,43 @@
 import logoImage from "../assets/favicon.ico"; // Adjust the path as necessary
 import React, { useState } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const Signin = ({ isOpen, onClose, onSignupOpen,onForgotPasswordOpen }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleSignin = async () => {
+  const handleSignin = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post('/api/auth/login', { email, password });
+        const response = await axios.post('http://localhost:5001/api/auth/login', { email, password });
         // Handle successful login (e.g., save token, redirect)
+        toast.success('Login successful!');
         console.log(response.data);
-    } catch (error) {
-      console.error(error);
+        // Save token to localStorage or context
+        localStorage.setItem('token', response.data.token);
+        // Close the modal
+        onClose();
+        // Redirect to profile page
+        navigate('/profile');
+      } catch (error) {
         // Handle error
-    }
-};
+        if (error.response && error.response.status === 400) {
+          toast.error('Invalid credentials!');
+        } else {
+          toast.error('Login failed!');
+        }
+        console.error(error);
+      }
+    };
   if (!isOpen) return null; // Return nothing if modal is closed
 
   return (
     <div className="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-4 ">
+      <ToastContainer />
       {/* Modal Content */}
       <div className="modal-content relative flex flex-col items-center max-w-[600px] mx-auto gap-5 p-8 bg-gradient-to-b from-[#a0c4ff] to-[#e4f0ff] rounded-lg text-center  font-sans animate-fadeIn">
         {/* Close Button */}
@@ -44,20 +61,20 @@ const Signin = ({ isOpen, onClose, onSignupOpen,onForgotPasswordOpen }) => {
 
           {/* Right Section: Form */}
           <div className="modal-form w-1/2 flex-1">
-            <form>
+            <form onSubmit={handleSignin}>
               {/* Username Input */}
               <label
-                htmlFor="username"
+                htmlFor="email"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Email or Phone Number
+                Email 
               </label>
               <input
                 type="text"
-                id="username"
-                name="username"
+                id="email"
+                name="email"
                 value={email}
-                placeholder="Enter your email/username"
+                placeholder="Enter your email"
                 className="w-full border rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 onChange={(e) => setEmail(e.target.value)}
                 required
