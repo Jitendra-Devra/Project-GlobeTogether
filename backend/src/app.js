@@ -5,17 +5,6 @@ import { connectDB } from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import postRoutes from './routes/postRoutes.js';
 
-
-// // index.js or App.js
-// import axios from 'axios';
-
-// // Set the base URL globally
-// axios.defaults.baseURL = 'http://localhost:5000';
-
-// // Optionally, configure headers or interceptors
-// axios.defaults.headers.common['Content-Type'] = 'application/json';
-
-
 dotenv.config();
 
 const app = express();

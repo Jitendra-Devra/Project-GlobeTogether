@@ -1,17 +1,25 @@
 import React from "react";
 import { useState } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Notification from "../pages/Notification";
 
-const Navbar = ({ openLogin, scrollToPosts }) => {
+const Navbar = ({ openLogin, scrollToPosts, user }) => {
   const [isNotificationPopupOpen, setNotificationPopupOpen] = useState(false);
-
+  const navigate = useNavigate();
 
   const toggleNotificationPopup = () => {
     console.log("Notification button clicked");
     setNotificationPopupOpen(!isNotificationPopupOpen);
     console.log("Notification popup state:", !isNotificationPopupOpen);
+  };
+
+  const handleProfileClick = () => {
+    if (user) {
+      navigate("/profile");
+    } else {
+      openLogin();
+    }
   };
 
   return (
@@ -25,10 +33,12 @@ const Navbar = ({ openLogin, scrollToPosts }) => {
 
         <div className=" menu flex items-center justify-center gap-4">
           {/* Profile Icon */}
-          <div className="container relative group text-center w-[54px] h-[50px] rounded-full flex items-center justify-center text-[24px] cursor-pointer"
-            id="profileBtn">
+          <div
+            className="container relative group text-center w-[54px] h-[50px] rounded-full flex items-center justify-center text-[24px] cursor-pointer"
+            id="profileBtn"
+          >
             <button
-              onClick={openLogin}
+              onClick={handleProfileClick}
               className="text-white text-[16px] flex items-center justify-center w-full h-full rounded-[5px] transition-colors duration-300 hover:bg-blue-600"
               aria-label="Profile"
             >
@@ -76,7 +86,6 @@ const Navbar = ({ openLogin, scrollToPosts }) => {
               className="text-white text-[16px] flex items-center justify-center px-[12px] py-[8px] rounded-[5px] transition-colors duration-300 hover:bg-blue-500"
               href="#"
               aria-label="Chat"
-              
             >
               <i className="fa-brands fa-rocketchat h-[30px] w-[30px] flex items-center justify-center"></i>
               <span className="tooltip absolute top-[120%] left-1/2 transform-translate-x-1/2  bg-black bg-opacity-80 text-white p-[5px_10px] rounded text-[12px] whitespace-nowrap  opacity-0 invisible transition-opacity duration-300 ease-out group-hover:opacity-100 group-hover:visible">

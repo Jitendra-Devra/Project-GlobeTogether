@@ -1,39 +1,21 @@
 import React from "react";
-import { useEffect ,useState } from "react";
-import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
-const Profile = () => {
-  const [user, setUser] = React.useState(null);
-  // const user = {
-  //   name: "John Doe",
-  //   email: "johndoe@example.com",
-  //   bio: "Full Stack Developer | Tech Enthusiast | Lifelong Learner",
-  //   profileImage:
-  //     "https://via.placeholder.com/150", // Replace with your actual image URL
-  //   location: "San Francisco, CA",
-  //   joined: "January 2023",
-  // };
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5001/api/auth/profile', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setUser(response.data);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
+const Profile = ({ user, setUser }) => {
+  const navigate = useNavigate();
 
-    fetchUserData();
-  },[]);
+  const handleSignout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('tokenExpiry');
+    setUser(null);
+    navigate('/');
+    window.location.reload(); // Reload the page to reset the state
+  };
 
-  if(!user){
-    return <div>Loading...</div>
+  if (!user) {
+    return <div>Loading...</div>;
   }
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
@@ -74,8 +56,8 @@ const Profile = () => {
             <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
               Edit Profile
             </button>
-            <button className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 transition">
-              Settings
+            <button className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 transition" onClick={handleSignout}>
+              Sign Out
             </button>
           </div>
         </div>

@@ -1,38 +1,51 @@
 import logoImage from "../assets/favicon.ico"; // Adjust the path as necessary
-import React, { useState } from 'react';
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
-const Signin = ({ isOpen, onClose, onSignupOpen,onForgotPasswordOpen }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const Signin = ({
+  isOpen,
+  onClose,
+  onSignupOpen,
+  onForgotPasswordOpen,
+  setUser,
+}) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSignin = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post('http://localhost:5001/api/auth/login', { email, password });
-        // Handle successful login (e.g., save token, redirect)
-        toast.success('Login successful!');
-        console.log(response.data);
-        // Save token to localStorage or context
-        localStorage.setItem('token', response.data.token);
-        // Close the modal
-        onClose();
-        // Redirect to profile page
-        navigate('/profile');
-      } catch (error) {
-        // Handle error
-        if (error.response && error.response.status === 400) {
-          toast.error('Invalid credentials!');
-        } else {
-          toast.error('Login failed!');
-        }
-        console.error(error);
+      const response = await axios.post(
+        "http://localhost:5001/api/auth/login",
+        { email, password }
+      );
+      // Handle successful login (e.g., save token, redirect)
+      console.log(response.data);
+      // Save token to localStorage with expiry time (1 day)
+      const token = response.data.token;
+      const expiryTime = new Date().getTime() + 24 * 60 * 60 * 1000; // 1 day in milliseconds
+      localStorage.setItem("token", token);
+      localStorage.setItem("tokenExpiry", expiryTime);
+      //update user state
+      setUser(response.data.user);
+      // Close the modal
+      onClose();
+      navigate("/"); // Redirect to home page
+    } catch (error) {
+      // Handle error
+      if (error.response && error.response.status === 400) {
+        toast.error("Invalid credentials!");
+      } else {
+        toast.error("Login failed!");
       }
-    };
+      console.error(error);
+    }
+    window.location.reload(); // Reload the page to reset the state
+  };
   if (!isOpen) return null; // Return nothing if modal is closed
 
   return (
@@ -41,7 +54,12 @@ const Signin = ({ isOpen, onClose, onSignupOpen,onForgotPasswordOpen }) => {
       {/* Modal Content */}
       <div className="modal-content relative flex flex-col items-center max-w-[600px] mx-auto gap-5 p-8 bg-gradient-to-b from-[#a0c4ff] to-[#e4f0ff] rounded-lg text-center  font-sans animate-fadeIn">
         {/* Close Button */}
-        <span className="absolute top-2 right-4 text-xl text-gray-800 cursor-pointer font-bold transition-colors duration-300 ease-in-out hover:text-red-500" onClick={onClose}>&#x2715;</span>
+        <span
+          className="absolute top-2 right-4 text-xl text-gray-800 cursor-pointer font-bold transition-colors duration-300 ease-in-out hover:text-red-500"
+          onClick={onClose}
+        >
+          &#x2715;
+        </span>
 
         {/* Modal Header */}
         <h2 className="text-2xl font-bold mb-4 text-center">
@@ -67,7 +85,7 @@ const Signin = ({ isOpen, onClose, onSignupOpen,onForgotPasswordOpen }) => {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Email 
+                Email
               </label>
               <input
                 type="text"
@@ -121,7 +139,7 @@ const Signin = ({ isOpen, onClose, onSignupOpen,onForgotPasswordOpen }) => {
 
             {/* Sign Up Link */}
             <p className="mt-4 text-sm text-center">
-               Don't have an account?{" "}
+              Don't have an account?{" "}
               <button
                 onClick={onSignupOpen}
                 className="text-blue-500 font-bold hover:underline"
